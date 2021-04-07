@@ -23,6 +23,8 @@ class Vect {
   Vect operator + ( Vect vec2);
   Vect operator - ( Vect vec2);
   Vect operator * ( Macierz2x2 &matrix);
+  double blenght (Vect vec2);
+  double slenght (Vect vec2);
   friend std::ostream& operator << ( std::ostream &stream, const Vect &A); 
 };
 

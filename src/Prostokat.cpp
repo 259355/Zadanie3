@@ -28,6 +28,20 @@ Prostokat Prostokat::move(Vect &vec){
     return *this;
 }
 
+double Prostokat::blenght(){
+    
+   this->blen = this->p1.blenght(this->p2);
+   
+   return this->blen;
+}
+
+double Prostokat::slenght(){
+    
+   this->slen = this->p1.slenght(this->p2);
+   
+   return this->slen;
+}
+
 std::ostream& operator << ( std::ostream &stream, const Prostokat &Pr){
     // stream << std::setprecision(7);
     stream << Pr.p1 << std::endl;
@@ -52,7 +66,6 @@ void Prostokat::turn(int ang){
     Macierz2x2 matrix;
     matrix.angle = ang;
     matrix.toradians();
-    // std::cout << this->p2.tabw[0] << std::endl;
     matrix.Init();
     *this = *this * matrix;
 

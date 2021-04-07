@@ -38,7 +38,7 @@ using namespace std;
  * \retval true - gdy operacja zapisu powiodła się,
  * \retval false - w przypadku przeciwnym.
  */
-void PrzykladZapisuWspolrzednychDoStrumienia( ostream& StrmWy, double Przesuniecie)
+void PrzykladZapisuWspolrzednychDoStrumienia( ostream& StrmWy, Prostokat pro)
 {
    //---------------------------------------------------------------
    // To tylko przyklad !!!
@@ -65,25 +65,26 @@ void PrzykladZapisuWspolrzednychDoStrumienia( ostream& StrmWy, double Przesuniec
 //          << setw(16) << fixed << setprecision(10) << y1+Przesuniecie << endl; 
 //                              // Jeszcze raz zapisujemy pierwszy punkt,
 //                              // aby gnuplot narysowal zamkniętą linię.
-  Prostokat pro;
-  pro.p1.tabw[0] = 100;
-  pro.p1.tabw[1] = 100;
-  pro.p2.tabw[0] = 100;
-  pro.p2.tabw[1] = 400;
-  pro.p3.tabw[0] = 700;
-  pro.p3.tabw[1] = 400;
-  pro.p4.tabw[0] = 700;
-  pro.p4.tabw[1] = 100;
+  // Prostokat pro;
+  // pro.p1.tabw[0] = 100;
+  // pro.p1.tabw[1] = 100;
+  // pro.p2.tabw[0] = 100;
+  // pro.p2.tabw[1] = 400;
+  // pro.p3.tabw[0] = 700;
+  // pro.p3.tabw[1] = 400;
+  // pro.p4.tabw[0] = 700;
+  // pro.p4.tabw[1] = 100;
 //   StrmWy << pro << endl;
-  Macierz2x2 matr;
+  // Macierz2x2 matr;
   int ang = 30;
-  Vect vec;
-  vec.tabw[0] = 100;
-  vec.tabw[1] = 100;
+  // Vect vec;
+  // vec.tabw[0] = 100;
+  // vec.tabw[1] = 100;
 //   pro.move(vec);
-//   pro.turn(ang);
+  pro.turn(ang);
   StrmWy << pro << endl;
-  
+  // pro.slenght();
+  // pro.blenght();
 }
 
 
@@ -100,9 +101,7 @@ void PrzykladZapisuWspolrzednychDoStrumienia( ostream& StrmWy, double Przesuniec
  * \retval true - gdy operacja zapisu powiodła się,
  * \retval false - w przypadku przeciwnym.
  */
-bool PrzykladZapisuWspolrzednychDoPliku( const char  *sNazwaPliku,
-                                         double       Przesuniecie
-                                       )
+bool PrzykladZapisuWspolrzednychDoPliku( const char  *sNazwaPliku, Prostokat pro)
 {
   ofstream  StrmPlikowy;
 
@@ -113,7 +112,7 @@ bool PrzykladZapisuWspolrzednychDoPliku( const char  *sNazwaPliku,
     return false;
   }
 
-  PrzykladZapisuWspolrzednychDoStrumienia(StrmPlikowy,Przesuniecie);
+  PrzykladZapisuWspolrzednychDoStrumienia(StrmPlikowy, pro);
 
   StrmPlikowy.close();
   return !StrmPlikowy.fail();
@@ -123,7 +122,46 @@ bool PrzykladZapisuWspolrzednychDoPliku( const char  *sNazwaPliku,
 
 int main()
 {
-  Prostokat             Pr;   // To tylko przykladowe definicje zmiennej
+  Prostokat pro;
+  pro.p1.tabw[0] = 100;
+  pro.p1.tabw[1] = 100;
+  pro.p2.tabw[0] = 100;
+  pro.p2.tabw[1] = 400;
+  pro.p3.tabw[0] = 700;
+  pro.p3.tabw[1] = 400;
+  pro.p4.tabw[0] = 700;
+  pro.p4.tabw[1] = 100;
+  cout << "Beginning" << endl;
+  double temp1, temp2;
+  temp1 = pro.blenght();
+  temp2 = pro.slenght();
+  cout << pro << endl;
+  cout << "After" << endl;
+  PrzykladZapisuWspolrzednychDoStrumienia(cout, pro);
+  cout << endl;
+  if(temp1 == pro.blen){
+       std::cout << ":) Longer sides are equal." << std::endl;
+       std::cout << "Before operation: " << temp1 << std::endl;
+       std::cout << "After operation: " << pro.blen << std::endl;
+   } 
+   else{
+       std::cout << ":( Longer sides are not equal." << std::endl;
+       std::cout << "Before operation: " << temp1 << std::endl;
+       std::cout << "After operation: " << pro.blen << std::endl; 
+   }
+   cout << endl;
+   if(temp1 == pro.slen){
+       std::cout << ":) Longer sides are equal." << std::endl;
+       std::cout << "Before operation: " << temp1 << std::endl;
+       std::cout << "After operation: " << pro.slen << std::endl;
+   } 
+   else{
+       std::cout << ":( Longer sides are not equal." << std::endl;
+       std::cout << "Before operation: " << temp1 << std::endl;
+       std::cout << "After operation: " << pro.slen << std::endl; 
+   }
+   cout << endl;
+  
   PzG::LaczeDoGNUPlota  Lacze;  // Ta zmienna jest potrzebna do wizualizacji
                                 // rysunku prostokata
 
@@ -147,17 +185,17 @@ int main()
   Lacze.ZmienTrybRys(PzG::TR_2D);
 
   
-  PrzykladZapisuWspolrzednychDoStrumienia(cout,0);
-  if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat",0)) return 1;
-  Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
-  cout << "Naciśnij ENTER, aby kontynuowac" << endl;
-  cin.ignore(100000,'\n');
+  // PrzykladZapisuWspolrzednychDoStrumienia(cout);
+  // if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat",50)) return 1;
+  // Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
+  // cout << "Naciśnij ENTER, aby kontynuowac" << endl;
+  // cin.ignore(100000,'\n');
 
    //----------------------------------------------------------
    // Ponownie wypisuje wspolrzedne i rysuje prostokąt w innym miejscu.
    //
-  PrzykladZapisuWspolrzednychDoStrumienia(cout,50);
-  if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat",50)) return 1;
+  
+  if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat", pro)) return 1;
   Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
   cout << "Naciśnij ENTER, aby kontynuowac" << endl;
   cin.ignore(100000,'\n');
