@@ -15,16 +15,16 @@ class Macierz2x2 {
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */
   
-  // double tab[2][2];
+  double tab[SIZEM][SIZEM];
 
   public:
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
    */    
-  double operator () (int Lin, int Col) const { return tab[Lin][Col]; }
+  double& operator () (int Lin, int Col) { return tab[Lin][Col]; }
   friend std::ostream& operator << (std::ostream &Strm, const Macierz2x2 &Mac);
   double angle; 
-  double tab[SIZEM][SIZEM];
+  // double tab[SIZEM][SIZEM];
   Macierz2x2 Init();
   double toradians();
   // void turn(Prostokat pr, int ang);

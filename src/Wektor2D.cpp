@@ -77,23 +77,14 @@ Vect Vect::operator + (Vect vec2){
     return tempvec;
 }
 
-double Vect::blenght (Vect vec2){
-    double bigl;
-    double smalll;
+double Vect::vlenght (Vect vec2){
+    double len;
     
-    bigl = sqrt(pow(vec2.tabw[0] - this->tabw[0],2) + pow(vec2.tabw[1] - this->tabw[1],2));
+    len = sqrt(pow(vec2.tabw[0] - this->tabw[0],2) + pow(vec2.tabw[1] - this->tabw[1],2));
 
-    return bigl;
+    return len;
 }
 
-double Vect::slenght (Vect vec2){
-
-    double smalll;
-    
-    smalll = sqrt(pow(vec2.tabw[0] - this->tabw[0],2) + pow(vec2.tabw[1] - this->tabw[1],2));
-
-    return smalll;
-}
 
 Vect Vect::operator - (Vect vec2){
     Vect tempvec;
@@ -107,7 +98,7 @@ Vect Vect::operator - (Vect vec2){
 std::ostream& operator << ( std::ostream &stream, const Vect &A){
 
     stream << std::setw(16) << std::fixed << std::setprecision(10) << A.tabw[0]
-           << std::setw(16) << std::fixed << std::setprecision(10) << A.tabw[1] << std::endl; 
+           << std::setw(16) << std::fixed << std::setprecision(10) << A.tabw[1];
 
     return stream;
 }
@@ -115,7 +106,8 @@ std::ostream& operator << ( std::ostream &stream, const Vect &A){
 Vect Vect::operator * (Macierz2x2 &matrix){
     double temp;
     temp = this->tabw[0];
-    this->tabw[0] = this->tabw[0] * matrix.tab[0][0] + this->tabw[1] * matrix.tab[0][1];    
-    this->tabw[1] = temp * matrix.tab[1][0] + this->tabw[1] * matrix.tab[1][1];
+    this->tabw[0] = this->tabw[0] * matrix(0,0) + this->tabw[1] * matrix(0,1);    
+    this->tabw[1] = temp * matrix(1,0) + this->tabw[1] * matrix(1,1);
     return *this;
 }
+

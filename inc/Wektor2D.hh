@@ -14,17 +14,16 @@ class Vect {
   /*
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */
-  
-  public:
   double tabw [SIZEV];
-  double operator () (int Ind) const { return tabw[Ind]; };
+  public:
+  // double tabw [SIZEV];
+  double& operator [] (int Ind)  { return tabw[Ind]; }
   // friend std::ostream& operator << ( std::ostream &stream, const Vect &vec);
   friend std::istream& operator >> ( std::istream &stream, Vect &vec);
   Vect operator + ( Vect vec2);
   Vect operator - ( Vect vec2);
   Vect operator * ( Macierz2x2 &matrix);
-  double blenght (Vect vec2);
-  double slenght (Vect vec2);
+  double vlenght (Vect vec2);
   friend std::ostream& operator << ( std::ostream &stream, const Vect &A); 
 };
 

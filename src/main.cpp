@@ -20,8 +20,77 @@ using namespace std;
 #define DL_KROTKI_BOK  100
 #define DL_DLUGI_BOK   150
 
+Prostokat menu (Prostokat &pro){
+  cout << "Beginning" << endl;
+  double temp1, temp2;
+  char choice;
+  pro.lenght();
+  temp1 = pro.blen;
+  temp2 = pro.slen;
 
+  cout << "m - menu" << endl;
+  cout << "o - turn" << endl;
+  cout << "w - cords" << endl;
+  cout << "p - move" << endl;
+  cout << "k - end" << endl;
 
+  while (choice != 'k'){
+    cout << "Your choice?  (m-menu) >";
+    cin >> choice;
+    switch( choice ){
+      case 'o': 
+        double ang, howm;
+        cout << "Choose an angle: ";
+        cin >> ang;
+        cout << "Choose how many times to turn rectangle: ";
+        cin >> howm;
+        for (int i = 0; i<howm; i++ ){
+          pro.turn(ang);
+        }
+        cout << pro << endl;
+        cout << "After" << endl;
+        cout << endl;
+        pro.showres(temp1,temp2);
+        cout << endl;
+        break;
+      case 'p': 
+        Vect vec;
+        cout << "Vector to move: ";
+        cin >> vec;
+        pro.move(vec);
+        cout << pro << endl;
+        cout << "After" << endl;
+        cout << endl;
+        pro.showres(temp1,temp2);
+        cout << endl;
+        break;
+      case 'w': 
+        cout << "Cooridantes" << endl;
+        cout << pro << endl;
+        break;
+      case 'm': 
+        cout << "m - menu" << endl;
+        cout << "o - turn" << endl;
+        cout << "w - cords" << endl;
+        cout << "p - move" << endl;
+        cout << "k - end" << endl;
+        break;
+      case 'k': 
+        cout << "The end" << endl;
+        break;
+      default:
+        cout << "Wrong Option" << endl;
+        break;
+
+      // cout << "After" << endl;
+      // cout << endl;
+      // pro.showres(temp1,temp2);
+      // cout << endl;
+    }
+  }
+  
+  return pro;
+}
 
 
 /*!
@@ -65,26 +134,21 @@ void PrzykladZapisuWspolrzednychDoStrumienia( ostream& StrmWy, Prostokat pro)
 //          << setw(16) << fixed << setprecision(10) << y1+Przesuniecie << endl; 
 //                              // Jeszcze raz zapisujemy pierwszy punkt,
 //                              // aby gnuplot narysowal zamkniętą linię.
-  // Prostokat pro;
-  // pro.p1.tabw[0] = 100;
-  // pro.p1.tabw[1] = 100;
-  // pro.p2.tabw[0] = 100;
-  // pro.p2.tabw[1] = 400;
-  // pro.p3.tabw[0] = 700;
-  // pro.p3.tabw[1] = 400;
-  // pro.p4.tabw[0] = 700;
-  // pro.p4.tabw[1] = 100;
-//   StrmWy << pro << endl;
-  // Macierz2x2 matr;
-  int ang = 30;
+
+  // cout << pro << endl;
+  // cout << "After" << endl;
+  // int ang = 30;
+
+  // cout << endl;
+  // // pro.showres(temp1,temp2);
+  // cout << endl;
   // Vect vec;
   // vec.tabw[0] = 100;
   // vec.tabw[1] = 100;
-//   pro.move(vec);
-  pro.turn(ang);
+  // pro.move(vec);
+  // pro = menu(pro);
   StrmWy << pro << endl;
-  // pro.slenght();
-  // pro.blenght();
+  
 }
 
 
@@ -123,44 +187,26 @@ bool PrzykladZapisuWspolrzednychDoPliku( const char  *sNazwaPliku, Prostokat pro
 int main()
 {
   Prostokat pro;
-  pro.p1.tabw[0] = 100;
-  pro.p1.tabw[1] = 100;
-  pro.p2.tabw[0] = 100;
-  pro.p2.tabw[1] = 400;
-  pro.p3.tabw[0] = 700;
-  pro.p3.tabw[1] = 400;
-  pro.p4.tabw[0] = 700;
-  pro.p4.tabw[1] = 100;
-  cout << "Beginning" << endl;
-  double temp1, temp2;
-  temp1 = pro.blenght();
-  temp2 = pro.slenght();
-  cout << pro << endl;
-  cout << "After" << endl;
-  PrzykladZapisuWspolrzednychDoStrumienia(cout, pro);
-  cout << endl;
-  if(temp1 == pro.blen){
-       std::cout << ":) Longer sides are equal." << std::endl;
-       std::cout << "Before operation: " << temp1 << std::endl;
-       std::cout << "After operation: " << pro.blen << std::endl;
-   } 
-   else{
-       std::cout << ":( Longer sides are not equal." << std::endl;
-       std::cout << "Before operation: " << temp1 << std::endl;
-       std::cout << "After operation: " << pro.blen << std::endl; 
-   }
-   cout << endl;
-   if(temp1 == pro.slen){
-       std::cout << ":) Longer sides are equal." << std::endl;
-       std::cout << "Before operation: " << temp1 << std::endl;
-       std::cout << "After operation: " << pro.slen << std::endl;
-   } 
-   else{
-       std::cout << ":( Longer sides are not equal." << std::endl;
-       std::cout << "Before operation: " << temp1 << std::endl;
-       std::cout << "After operation: " << pro.slen << std::endl; 
-   }
-   cout << endl;
+  pro.p1[0] = 100;
+  pro.p1[1] = 100;
+  pro.p2[0] = 100;
+  pro.p2[1] = 400;
+  pro.p3[0] = 700;
+  pro.p3[1] = 400;
+  pro.p4[0] = 700;
+  pro.p4[1] = 100;
+  // cout << "Beginning" << endl;
+  // double temp1, temp2;
+  // pro.lenght();
+  // temp1 = pro.blen;
+  // temp2 = pro.slen;
+  // cout << pro << endl;
+  // cout << "After" << endl;
+  // menu(pro);
+  // PrzykladZapisuWspolrzednychDoStrumienia(cout, menu(pro));
+  // cout << endl;
+  // pro.showres(temp1,temp2);
+  // cout << endl;
   
   PzG::LaczeDoGNUPlota  Lacze;  // Ta zmienna jest potrzebna do wizualizacji
                                 // rysunku prostokata
@@ -184,18 +230,12 @@ int main()
    //
   Lacze.ZmienTrybRys(PzG::TR_2D);
 
-  
-  // PrzykladZapisuWspolrzednychDoStrumienia(cout);
-  // if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat",50)) return 1;
-  // Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
-  // cout << "Naciśnij ENTER, aby kontynuowac" << endl;
-  // cin.ignore(100000,'\n');
-
    //----------------------------------------------------------
    // Ponownie wypisuje wspolrzedne i rysuje prostokąt w innym miejscu.
    //
-  
+  PrzykladZapisuWspolrzednychDoStrumienia(cout, menu(pro));
   if (!PrzykladZapisuWspolrzednychDoPliku("prostokat.dat", pro)) return 1;
+  // cout << pro << endl;
   Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
   cout << "Naciśnij ENTER, aby kontynuowac" << endl;
   cin.ignore(100000,'\n');

@@ -11,14 +11,6 @@
  *  i jakie ma glowne cechy.
  */
 
-// class Point{
-//   public:
-//     double x;
-//     double y;
-//     friend Point operator * (Point &A, Macierz2x2 &matrix);
-//     friend Point operator + (Point &A, Vect &vec);
-//     friend std::ostream& operator << ( std::ostream &stream, const Point &A);
-//   };
 
 class Prostokat {
   /*
@@ -34,15 +26,11 @@ class Prostokat {
   
   Prostokat operator + (Vect vec2);
   void turn(int ang);
-  double slenght();
-  double blenght();
+  double lenght();
+  void showres(double temp1, double temp2);
   Prostokat operator * (Macierz2x2 &matrix);
   Prostokat move(Vect &vec);
   friend std::ostream& operator << ( std::ostream &stream, const Prostokat &Pr);
-  // friend std::ostream& operator << ( std::ostream &stream, const Point &A);
-  /*
-   *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
-   */  
 };
 
 
